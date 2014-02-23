@@ -5,7 +5,7 @@ var connect = require('connect')
     , port = (process.env.PORT || 8081);
 
 //Setup Express
-var server = express.createServer();
+var server = express();
 server.configure(function(){
     server.set('views', __dirname + '/views');
     server.set('view options', { layout: false });
@@ -14,10 +14,11 @@ server.configure(function(){
     server.use(express.session({ secret: "shhhhhhhhh!"}));
     server.use(connect.static(__dirname + '/static'));
     server.use(server.router);
+    server.use(error);
 });
 
 //setup the errors
-server.error(function(err, req, res, next){
+function error(err, req, res, next){
     if (err instanceof NotFound) {
         res.render('404.jade', { locals: { 
                   title : '404 - Not Found'
@@ -34,7 +35,7 @@ server.error(function(err, req, res, next){
                  ,error: err 
                 },status: 500 });
     }
-});
+};
 server.listen( port);
 
 //Setup Socket.IO
