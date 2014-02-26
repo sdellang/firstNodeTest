@@ -1,20 +1,8 @@
-doctype html
-html(lang="en")
-  head
+extends layout
+
+block head
     title= pageTitle
-    script(type='text/javascript').
-      if (foo) {
-         bar(1 + 5)
-      }
-  body
-    h1 Jade - node template engine
+block body
+    h1 First experiment with Node.js and Angular.js
     #container.col
-      if youAreUsingJade
-        p You are amazing
-      else
-        p Get on it!
-      p.
-        Jade is a terse and simple
-        templating language with a
-        strong focus on performance
-        and powerful features.
+     a(href="/ReadData/1") Read Data
