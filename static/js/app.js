@@ -4,8 +4,9 @@ var firstApp = angular.module('firstApp',['ngRoute','firstAppControllers']);
 
 firstApp.config(['$routeProvider',
     function($routeProvider) {
+        console.log("passo da app.js");
         $routeProvider.
-            when('/ReadData/:id',
+            when('/readData/:id',
             {
                 templateUrl: 'partials/ReadData',
                 controller: 'dataController'

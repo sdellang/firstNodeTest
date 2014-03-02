@@ -5,4 +5,11 @@ block head
 block body
     h1 First experiment with Node.js and Angular.js
     #container.col
-     a(href="/ReadData/1") Read Data
+     a(href="/readData/1") Read Data
+
+    div(ng-view)
+
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js')
+    script(src='js/controllers.js')
+    script(src='js/app.js')

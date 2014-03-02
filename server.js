@@ -2,6 +2,8 @@
 var connect = require('connect')
     , express = require('express')
     , io = require('socket.io')
+    , api = require('./routes/api.js')
+    , com = require('./routes/commons.js')
     , port = (process.env.PORT || 8081);
 
 //Setup Express
@@ -14,29 +16,12 @@ server.configure(function(){
     server.use(express.session({ secret: "shhhhhhhhh!"}));
     server.use(connect.static(__dirname + '/static'));
     server.use(server.router);
-    server.use(error);
+    server.use(com.errors);
 });
 
 //setup the errors
-function error(err, req, res, next){
-    if (err instanceof NotFound) {
-        res.render('404.jade', { locals: { 
-                  title : '404 - Not Found'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX' 
-                },status: 404 });
-    } else {
-        res.render('500.jade', { locals: { 
-                  title : 'The Server Encountered an Error'
-                 ,description: ''
-                 ,author: ''
-                 ,analyticssiteid: 'XXXXXXX'
-                 ,error: err 
-                },status: 500 });
-    }
-};
-server.listen( port);
+
+server.listen(port);
 
 //Setup Socket.IO
 var io = io.listen(server);
@@ -58,17 +43,12 @@ io.sockets.on('connection', function(socket){
 
 /////// ADD ALL YOUR ROUTES HERE  /////////
 
-server.get('/', function(req,res){
-  res.render('index.jade', {
-    locals : { 
-              title : 'Your Page Title'
-             ,description: 'Your Page Description'
-             ,author: 'Your Name'
-             ,analyticssiteid: 'XXXXXXX' 
-            }
-  });
-});
+//common routes
+server.get('/', com.index);
+server.get('/partials/:name', com.partials)
 
+//api routes
+server.get('/api/readData/:id', api.readData)
 
 //A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){
@@ -76,15 +56,6 @@ server.get('/500', function(req, res){
 });
 
 //The 404 Route (ALWAYS Keep this as the last route)
-server.get('/*', function(req, res){
-    throw new NotFound;
-});
-
-function NotFound(msg){
-    this.name = 'NotFound';
-    Error.call(this, msg);
-    Error.captureStackTrace(this, arguments.callee);
-}
-
+server.get('*', com.index);
 
 console.log('Listening on http://0.0.0.0:' + port );
