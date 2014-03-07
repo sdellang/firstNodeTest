@@ -3,13 +3,27 @@ extends layout
 block head
     title= pageTitle
 block body
-    h1 First experiment with Node.js and Angular.js
-    #container.col
-     a(href="/readData/1") Read Data
+    nav(class='nav nav-colors center-block')
+        div(class='navbar-inner')
+            div(class='navbar-header')
+               button(type='button', class='navbar-toggle nav-button', data-toggle='collapse', data-target='#main-navbar')
+                    span(class='glyphicon glyphicon-collapse-down')
+               a(class='navbar-brand nav-link-color',href='#') Yaki Udon
+            div(class='collapse navbar-collapse' , id='main-navbar')
+                ul(class='nav navbar-nav nav-link-color')
+                    li
+                        a(href='/#readData/1' , class='nav-link-color') Read 1
+                    li
+                        a(href='/#readData/0' , class='nav-link-color') Read 0
+                ul(class='nav navbar-right nav-link-color')
+                    li
+                        a(href='/#addPost/' , class='glyphicon glyphicon-record')
+    div(class='container-fluid')
+        //here is the part that change
+        div(ng-view)
 
-    div(ng-view)
 
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js')
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js')
+    script(src='js/angular/angular.js')
+    script(src='js/angular/angular-route.js')
     script(src='js/controllers.js')
     script(src='js/app.js')

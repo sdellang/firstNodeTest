@@ -21,7 +21,7 @@ var data = {
 exports.readData = function(req, res) {
     var id = req.params.id;
     var post;
-    if(id>=0 && id < data.post.lenght) {
+    if(id>=0 && id < data.posts.length) {
         res.json({
             data: data.posts[id]
         });

@@ -6,6 +6,10 @@ firstApp.config(['$routeProvider',
     function($routeProvider) {
         console.log("passo da app.js");
         $routeProvider.
+            when('/', {
+                templateUrl: 'partials/main',
+                controller: 'mainController'
+            }).
             when('/readData/:id',
             {
                 templateUrl: 'partials/ReadData',
