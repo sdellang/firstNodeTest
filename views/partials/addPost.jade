@@ -1,0 +1,22 @@
+//
+   Created with IntelliJ IDEA.
+   User: samuele
+   Date: 3/10/14
+   Time: 11:46 PM
+   add post template
+
+
+form(role="form")
+    div(class="clearfix")
+    div(id="messages" , ng-show="message") {{ message }}
+    div(class="form-group" , id='title-group')
+        label(for="storyTitle") Story Title
+        input(type="text", class="form-control", id="storyTitle" , placeholder="Enter Title" , ng-model='formData.title')
+    div(class="form-group" , id='story-group')
+        label(for="storyText") Story
+        textarea(class="form-control", id="storyText" , rows="20" , placeholder="Enter Story" , ng-model='formData.story')
+    div(class="checkbox")
+        label(for="topStory") Top Story
+        input(type="checkbox" , id="topStory")
+    button(type="submit" , class="btn btn-default col-sm-6" , ng-click='addPostSave()') Save
+    button(type="submit" , class="btn btn-danger col-sm-6") Public

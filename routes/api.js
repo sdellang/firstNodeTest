@@ -27,3 +27,11 @@ exports.readData = function(req, res) {
         });
     }
 }
+
+exports.addPost = function(req, res) {
+
+    var title = req.body.title;
+    res.json({
+        message: title
+    });
+}

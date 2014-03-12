@@ -14,5 +14,10 @@ firstApp.config(['$routeProvider',
             {
                 templateUrl: 'partials/ReadData',
                 controller: 'dataController'
+            }).
+            when('/addPost/',
+            {
+                templateUrl: 'partials/addPost',
+                controller: 'addPostController'
             });
     }]);

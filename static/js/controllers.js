@@ -15,3 +15,19 @@ firstAppControllers.controller('dataController',['$scope','$http', '$routeParams
                 console.log(error);
             });
     }]);
+firstAppControllers.controller('addPostController',['$scope','$http',
+    function($scope,$http) {
+        console.log("passo nell'add Post controller");
+
+        $scope.formData = {};
+
+        $scope.addPostSave = function() {
+          console.log($scope.formData.title);
+          console.log($scope.formData.story);
+
+          $http.post('api/addPost/',$scope.formData).
+              success(function(data) {
+                $scope.message = data.message;
+              });
+        };
+    }]);

@@ -45,10 +45,11 @@ io.sockets.on('connection', function(socket){
 
 //common routes
 server.get('/', com.index);
-server.get('/partials/:name', com.partials)
+server.get('/partials/:name', com.partials);
 
 //api routes
-server.get('/api/readData/:id', api.readData)
+server.get('/api/readData/:id', api.readData);
+server.post('/api/addPost/',api.addPost);
 
 //A Route for Creating a 500 Error (Useful to keep around)
 server.get('/500', function(req, res){
