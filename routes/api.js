@@ -5,6 +5,7 @@
  * Time: 00:08
  * apis
  */
+var persistence = require('./persistence.js')
 var data = {
     "posts": [
         {
@@ -19,8 +20,8 @@ var data = {
 };
 
 exports.readData = function(req, res) {
-    var id = req.params.id;
-    var post;
+    id = req.params.id;
+    post;
     if(id>=0 && id < data.posts.length) {
         res.json({
             data: data.posts[id]
@@ -31,7 +32,13 @@ exports.readData = function(req, res) {
 exports.addPost = function(req, res) {
 
     var title = req.body.title;
+    var post = {
+        "title": req.body.title,
+        "story": req.body.story
+
+    };
+    var result = persistence.addNewPost(post);
     res.json({
-        message: title
+        message: result
     });
 }

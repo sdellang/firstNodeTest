@@ -18,13 +18,13 @@ db = new Db('storyDb' , server);
 
 exports.addNewPost = function(data) {
     db.collection('stories', function(err, collection) {
-        collection.insert(wine, {safe:true}, function(err, result) {
+        collection.insert(data, {safe:true}, function(err, result) {
             if (err) {
                 console.log("An Error has occurred");
-                return false;
+                return "Error";
             } else {
                 console.log('Success: ' + JSON.stringify(result[0]));
-                return true
+                return "Success"
                     ;
             }
         });
